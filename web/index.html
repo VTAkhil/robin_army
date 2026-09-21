@@ -2,397 +2,556 @@
 <html lang="en-US">
 
 <head>
-  <base href="/">
 
-  <meta name="google-signin-client_id" content="YOUR_CLIENT_ID">
+    <base href="/">
 
-  <meta charset="UTF-8">
+    <!-- ========================================================= -->
+    <!-- BASIC META -->
+    <!-- ========================================================= -->
 
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta charset="UTF-8">
 
-  <meta name="description" content="A multi-vendor service providing app.">
+    <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=Edge"
+    >
 
-  <meta name="robots"
-        content="nofollow, noindex, max-snippet:1, max-video-preview:1, max-image-preview:standard">
+    <meta
+            name="description"
+            content="A multi-vendor service providing app."
+    >
 
-  <!-- iOS Meta Tags & Icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Robin Army">
+    <meta
+            name="robots"
+            content="nofollow, noindex, max-snippet:1, max-video-preview:1, max-image-preview:standard"
+    >
 
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+    <!-- ========================================================= -->
+    <!-- GOOGLE SIGN-IN -->
+    <!-- ========================================================= -->
 
-  <!-- Page Title -->
-  <title>Robin Army</title>
+    <meta
+            name="google-signin-client_id"
+            content="YOUR_CLIENT_ID"
+    >
 
-  <!-- Manifest -->
-  <link rel="manifest" href="manifest.json">
+    <!-- ========================================================= -->
+    <!-- iOS META TAGS -->
+    <!-- ========================================================= -->
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <meta
+            name="apple-mobile-web-app-capable"
+            content="yes"
+    >
 
-  <!-- Flutter InAppWebView Support -->
-  <script src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
-          defer></script>
+    <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black"
+    >
 
-  <!-- Hide reCAPTCHA Badge -->
-  <style>
-    .grecaptcha-badge {
-      visibility: hidden;
-    }
-  </style>
+    <meta
+            name="apple-mobile-web-app-title"
+            content="Robin Army"
+    >
 
-  <!-- Flutter Service Worker Version -->
-  <script>
-    // The value below is injected by flutter build.
-    var serviceWorkerVersion = "1221465012";
-  </script>
+    <link
+            rel="apple-touch-icon"
+            href="icons/Icon-192.png"
+    >
 
-  <!-- Custom Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service_worker.js')
-          .then((registration) => {
-            console.log(
-              'Custom ServiceWorker registration successful with scope:',
-              registration.scope
-            );
-          })
-          .catch((error) => {
-            console.error(
-              'Custom ServiceWorker registration failed:',
-              error
-            );
-          });
-      });
-    }
-  </script>
+    <!-- ========================================================= -->
+    <!-- FAVICON -->
+    <!-- ========================================================= -->
 
-  <!-- Safari WebGL2 Fix -->
-  <script>
-    if (
-      navigator.userAgent.indexOf("Safari") !== -1 &&
-      navigator.userAgent.indexOf("Chrome") === -1
-    ) {
-      var originalGetContext =
-        HTMLCanvasElement.prototype.getContext;
+    <link
+            rel="icon"
+            type="image/png"
+            href="favicon.png"
+    >
 
-      HTMLCanvasElement.prototype.getContext = function () {
-        var contextType = arguments[0];
+    <!-- ========================================================= -->
+    <!-- APP TITLE -->
+    <!-- ========================================================= -->
 
-        if (contextType === "webgl2") {
-          return null;
+    <title>Robin Army</title>
+
+    <!-- ========================================================= -->
+    <!-- MANIFEST -->
+    <!-- ========================================================= -->
+
+    <link
+            rel="manifest"
+            href="manifest.json"
+    >
+
+    <!-- ========================================================= -->
+    <!-- MAIN CSS -->
+    <!-- ========================================================= -->
+
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="style.css"
+    >
+
+    <!-- ========================================================= -->
+    <!-- FLUTTER INAPPWEBVIEW -->
+    <!-- ========================================================= -->
+
+    <script
+            type="application/javascript"
+            src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
+            defer
+    ></script>
+
+    <!-- ========================================================= -->
+    <!-- RECAPTCHA -->
+    <!-- ========================================================= -->
+
+    <style>
+
+        .grecaptcha-badge {
+            visibility: hidden;
         }
 
-        return originalGetContext.apply(
-          this,
-          [contextType].concat(
-            Array.prototype.slice.call(arguments, 1)
-          )
-        );
-      };
-    }
-  </script>
+    </style>
 
-  <!-- Flutter Initialization Script -->
-  <script src="flutter.js?version=3.3" defer></script>
+    <!-- ========================================================= -->
+    <!-- SAFARI WEBGL2 COMPATIBILITY -->
+    <!-- ========================================================= -->
 
-  <!-- Splash Screen Styles -->
-  <style id="splash-screen-style">
-    html {
-      height: 100%;
-    }
+    <script>
 
-    body {
-      margin: 0;
-      min-height: 100%;
-      background-color: #ffffff;
-      background-size: 100% 100%;
-    }
+        if (
+            navigator.userAgent.indexOf("Safari") !== -1 &&
+            navigator.userAgent.indexOf("Chrome") === -1
+        ) {
 
-    .center {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+            var originalGetContext =
+                HTMLCanvasElement.prototype.getContext;
 
-    .contain {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+            HTMLCanvasElement.prototype.getContext =
+                function () {
 
-    .stretch {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+                    var contextType =
+                        arguments[0];
 
-    .cover {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+                    if (contextType === "webgl2") {
+                        return null;
+                    }
 
-    .bottom {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 0);
-    }
+                    return originalGetContext.apply(
+                        this,
+                        [contextType].concat(
+                            Array.prototype.slice.call(
+                                arguments,
+                                1
+                            )
+                        )
+                    );
 
-    .bottomLeft {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
+                };
 
-    .bottomRight {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-  </style>
+        }
 
-  <!-- Splash Screen Script -->
-  <script id="splash-screen-script">
-    function removeSplashFromWeb() {
-      document.getElementById("splash")?.remove();
-      document.getElementById("splash-branding")?.remove();
+    </script>
 
-      document.body.style.background = "transparent";
-    }
-  </script>
+    <!-- ========================================================= -->
+    <!-- SPLASH SCREEN STYLE -->
+    <!-- ========================================================= -->
 
-  <!-- Viewport -->
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        name="viewport">
+    <style id="splash-screen-style">
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100%;
+            background-color: #ffffff;
+            background-size: 100% 100%;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            -ms-transform: translate(
+                -50%,
+                -50%
+            );
+
+            transform: translate(
+                -50%,
+                -50%
+            );
+        }
+
+        .contain {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+        .stretch {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        .cover {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .bottom {
+            position: absolute;
+
+            bottom: 0;
+            left: 50%;
+
+            -ms-transform: translate(
+                -50%,
+                0
+            );
+
+            transform: translate(
+                -50%,
+                0
+            );
+        }
+
+        .bottomLeft {
+            position: absolute;
+
+            bottom: 0;
+            left: 0;
+        }
+
+        .bottomRight {
+            position: absolute;
+
+            bottom: 0;
+            right: 0;
+        }
+
+    </style>
+
+    <!-- ========================================================= -->
+    <!-- SPLASH SCREEN SCRIPT -->
+    <!-- ========================================================= -->
+
+    <script id="splash-screen-script">
+
+        function removeSplashFromWeb() {
+
+            var splash =
+                document.getElementById(
+                    "splash"
+                );
+
+            if (splash) {
+                splash.remove();
+            }
+
+            var splashBranding =
+                document.getElementById(
+                    "splash-branding"
+                );
+
+            if (splashBranding) {
+                splashBranding.remove();
+            }
+
+            document.body.style.background =
+                "transparent";
+        }
+
+    </script>
 
 </head>
 
 <body>
 
-<!-- Splash Screen -->
+<!-- ========================================================= -->
+<!-- SPLASH SCREEN -->
+<!-- ========================================================= -->
+
 <picture id="splash">
 
-  <source
-          srcset="
-        splash/img/light-1x.png 1x,
-        splash/img/light-2x.png 2x,
-        splash/img/light-3x.png 3x,
-        splash/img/light-4x.png 4x
-      "
-          media="(prefers-color-scheme: light)">
+    <source
+            srcset="
+            splash/img/light-1x.png 1x,
+            splash/img/light-2x.png 2x,
+            splash/img/light-3x.png 3x,
+            splash/img/light-4x.png 4x
+        "
+            media="(prefers-color-scheme: light)"
+    >
 
-  <source
-          srcset="
-        splash/img/dark-1x.png 1x,
-        splash/img/dark-2x.png 2x,
-        splash/img/dark-3x.png 3x,
-        splash/img/dark-4x.png 4x
-      "
-          media="(prefers-color-scheme: dark)">
+    <source
+            srcset="
+            splash/img/dark-1x.png 1x,
+            splash/img/dark-2x.png 2x,
+            splash/img/dark-3x.png 3x,
+            splash/img/dark-4x.png 4x
+        "
+            media="(prefers-color-scheme: dark)"
+    >
 
-  <img
-          class="center"
-          aria-hidden="true"
-          src="splash/img/light-1x.png"
-          alt="">
+    <img
+            class="center"
+            aria-hidden="true"
+            src="splash/img/light-1x.png"
+            alt=""
+    >
 
 </picture>
 
-<!-- Google Maps API -->
+<!-- ========================================================= -->
+<!-- GOOGLE MAPS -->
+<!-- ========================================================= -->
+
 <script
         async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyaNQxYjeFAxFIfR_ZacZiYKaxhSvuOnA&loading=async&callback=Function.prototype">
-</script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyaNQxYjeFAxFIfR_ZacZiYKaxhSvuOnA&loading=async&callback=Function.prototype"
+></script>
 
-<!-- Firebase SDK - Version 8 -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<!-- ========================================================= -->
+<!-- PRELOADER -->
+<!-- ========================================================= -->
 
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
-
-<!-- Firebase Initialization -->
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCp-zEiRDKHH46yIPlHeF0xK1F7Yc4E16k",
-    authDomain: "robinarmy-42918.firebaseapp.com",
-    projectId: "robinarmy-42918",
-    storageBucket: "robinarmy-42918.firebasestorage.app",
-    messagingSenderId: "734344289873",
-    appId: "1:734344289873:web:377a9fb01d602c18f2e270",
-    measurementId: "G-B2BPXEB77H"
-  };
-
-  try {
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    console.log("Firebase initialized successfully");
-
-    // Check Firebase Messaging support
-    if (
-      firebase.messaging &&
-      firebase.messaging.isSupported()
-    ) {
-      const messaging = firebase.messaging();
-
-      // Make Firebase Messaging available globally
-      window.firebaseMessaging = messaging;
-
-      console.log(
-        "Firebase Messaging initialized successfully"
-      );
-
-    } else {
-      console.warn(
-        "Firebase Messaging is not supported in this browser"
-      );
-    }
-
-  } catch (error) {
-    console.error(
-      "Firebase initialization failed:",
-      error
-    );
-  }
-</script>
-
-<!-- Preloader -->
 <div class="preloader">
-  <div class="preloader-container">
-    <img
-            width="60"
-            class="preloader-img"
-            src="logo.png"
-            alt="Logo">
 
-    <div class="loader"></div>
-  </div>
+    <div class="preloader-container">
+
+        <img
+                width="60"
+                class="preloader-img"
+                src="logo.png"
+                alt=""
+        >
+
+        <div class="loader"></div>
+
+    </div>
+
 </div>
 
-<!-- Header -->
+<!-- ========================================================= -->
+<!-- HEADER -->
+<!-- ========================================================= -->
+
 <header class="header">
 
-  <div class="header-container d-flex align-items-center justify-content-between">
+    <div
+            class="header-container d-flex align-items-center justify-content-between"
+    >
 
-    <div class="header-start d-flex gap-5 align-items-center">
+        <div
+                class="header-start d-flex gap-5 align-items-center"
+        >
 
-      <img
-              class="logo"
-              src="appbarlogo.png"
-              alt="App Logo">
+            <img
+                    class="logo"
+                    src="appbarlogo.png"
+                    alt=""
+            >
 
-      <div class="placeholder placeholder-wide"></div>
-      <div class="placeholder"></div>
-      <div class="placeholder"></div>
-      <div class="placeholder"></div>
+            <div
+                    class="placeholder placeholder-wide"
+            ></div>
+
+            <div
+                    class="placeholder"
+            ></div>
+
+            <div
+                    class="placeholder"
+            ></div>
+
+            <div
+                    class="placeholder"
+            ></div>
+
+        </div>
+
+        <div
+                class="header-end d-flex gap-5"
+        >
+
+            <div
+                    class="placeholder"
+            ></div>
+
+            <div
+                    class="placeholder"
+            ></div>
+
+            <div
+                    class="placeholder"
+            ></div>
+
+        </div>
 
     </div>
-
-    <div class="header-end d-flex gap-5">
-
-      <div class="placeholder"></div>
-      <div class="placeholder"></div>
-      <div class="placeholder"></div>
-
-    </div>
-
-  </div>
 
 </header>
 
-<!-- SVG Image Replacement Script -->
+<!-- ========================================================= -->
+<!-- SVG IMAGE REPLACEMENT -->
+<!-- ========================================================= -->
+
 <script>
-  document.querySelectorAll("img.svg").forEach(function (img) {
 
-    var imgID = img.getAttribute("id");
-    var imgClass = img.getAttribute("class");
-    var imgURL = img.getAttribute("src");
+    document
+        .querySelectorAll("img.svg")
+        .forEach(function (img) {
 
-    var xhr = new XMLHttpRequest();
+            var imgID =
+                img.getAttribute("id");
 
-    xhr.open("GET", imgURL, true);
+            var imgClass =
+                img.getAttribute("class");
 
-    xhr.responseType = "document";
+            var imgURL =
+                img.getAttribute("src");
 
-    xhr.onload = function () {
+            if (!imgURL) {
+                return;
+            }
 
-      if (xhr.status === 200) {
+            var xhr =
+                new XMLHttpRequest();
 
-        var data = xhr.response;
+            xhr.open(
+                "GET",
+                imgURL,
+                true
+            );
 
-        var svg = data.querySelector("svg");
+            xhr.responseType =
+                "document";
 
-        if (!svg) {
-          return;
-        }
+            xhr.onload = function () {
 
-        // Add image ID
-        if (typeof imgID !== "undefined" && imgID !== null) {
-          svg.setAttribute("id", imgID);
-        }
+                if (xhr.status !== 200) {
+                    return;
+                }
 
-        // Add image classes
-        if (typeof imgClass !== "undefined" && imgClass !== null) {
-          svg.setAttribute(
-            "class",
-            imgClass + " replaced-svg"
-          );
-        }
+                var data =
+                    xhr.response;
 
-        // Remove invalid XML attribute
-        svg.removeAttribute("xmlns:a");
+                if (!data) {
+                    return;
+                }
 
-        // Set viewBox if missing
-        if (
-          !svg.getAttribute("viewBox") &&
-          svg.getAttribute("height") &&
-          svg.getAttribute("width")
-        ) {
-          svg.setAttribute(
-            "viewBox",
-            "0 0 " +
-            svg.getAttribute("height") +
-            " " +
-            svg.getAttribute("width")
-          );
-        }
+                var svg =
+                    data.querySelector("svg");
 
-        // Replace image with SVG
-        if (img.parentNode) {
-          img.parentNode.replaceChild(svg, img);
-        }
+                if (!svg) {
+                    return;
+                }
 
-      }
+                if (
+                    typeof imgID !== "undefined" &&
+                    imgID !== null
+                ) {
 
-    };
+                    svg.setAttribute(
+                        "id",
+                        imgID
+                    );
 
-    xhr.onerror = function () {
-      console.warn(
-        "Unable to load SVG image:",
-        imgURL
-      );
-    };
+                }
 
-    xhr.send();
+                if (
+                    typeof imgClass !== "undefined" &&
+                    imgClass !== null
+                ) {
 
-  });
+                    svg.setAttribute(
+                        "class",
+                        imgClass +
+                        " replaced-svg"
+                    );
+
+                }
+
+                svg.removeAttribute(
+                    "xmlns:a"
+                );
+
+                if (
+                    !svg.getAttribute("viewBox") &&
+                    svg.getAttribute("height") &&
+                    svg.getAttribute("width")
+                ) {
+
+                    svg.setAttribute(
+                        "viewBox",
+                        "0 0 " +
+                        svg.getAttribute("height") +
+                        " " +
+                        svg.getAttribute("width")
+                    );
+
+                }
+
+                if (img.parentNode) {
+
+                    img.parentNode.replaceChild(
+                        svg,
+                        img
+                    );
+
+                }
+
+            };
+
+            xhr.onerror = function () {
+
+                console.warn(
+                    "Unable to load SVG:",
+                    imgURL
+                );
+
+            };
+
+            xhr.send();
+
+        });
+
 </script>
 
-<!-- Flutter Web Application Loader -->
-<script>
-  window.addEventListener('load', function (ev) {
+<!-- ========================================================= -->
+<!-- FLUTTER APP -->
+<!-- ========================================================= -->
 
-    (()=>{var _={blink:!0,gecko:!1,webkit:!1,unknown:!1},K=()=>navigator.vendor==="Google Inc."||navigator.userAgent.includes("Edg/")?"blink":navigator.vendor==="Apple Computer, Inc."?"webkit":navigator.vendor===""&&navigator.userAgent.includes("Firefox")?"gecko":"unknown",L=K(),R=()=>typeof ImageDecoder>"u"?!1:L==="blink",B=()=>typeof Intl.v8BreakIterator<"u"&&typeof Intl.Segmenter<"u",z=()=>{let i=[0,97,115,109,1,0,0,0,1,5,1,95,1,120,0];return WebAssembly.validate(new Uint8Array(i))},M=()=>{let i=document.createElement("canvas");return i.width=1,i.height=1,i.getContext("webgl2")!=null?2:i.getContext("webgl")!=null?1:-1},w={browserEngine:L,hasImageCodecs:R(),hasChromiumBreakIterators:B(),supportsWasmGC:z(),crossOriginIsolated:window.crossOriginIsolated,webGLVersion:M()};function c(...i){return new URL(I(...i),document.baseURI).toString()}function I(...i){return i.filter(e=>!!e).map((e,r)=>r===0?C(e):D(C(e))).filter(e=>e.length).join("/")}function D(i){let e=0;for(;e<i.length&&i.charAt(e)==="/";)e++;return i.substring(e)}function C(i){let e=i.length;for(;e>0&&i.charAt(e-1)==="/";)e--;return i.substring(0,e)}function T(i,e){return i.canvasKitBaseUrl?i.canvasKitBaseUrl:e.engineRevision&&!e.useLocalCanvasKit?I("https://www.gstatic.com/flutter-canvaskit",e.engineRevision):"canvaskit"}var h=class{constructor(){this._scriptLoaded=!1}setTrustedTypesPolicy(e){this._ttPolicy=e}async loadEntrypoint(e){let{entrypointUrl:r=c("main.dart.js"),onEntrypointLoaded:t,nonce:n}=e||{};return this._loadJSEntrypoint(r,t,n)}async load(e,r,t,n,s){s??=d=>{d.initializeEngine(t).then(u=>u.runApp())};let{entrypointBaseUrl:a}=t,{entryPointBaseUrl:o}=t;if(!a&&o&&(console.warn("[deprecated] `entryPointBaseUrl` is deprecated and will be removed in a future release. Use `entrypointBaseUrl` instead."),a=o),e.compileTarget==="dart2wasm")return this._loadWasmEntrypoint(e,r,a,s);{let d=e.mainJsPath??"main.dart.js",u=c(a,d);return this._loadJSEntrypoint(u,s,n)}}didCreateEngineInitializer(e){typeof this._didCreateEngineInitializerResolve=="function"&&(this._didCreateEngineInitializerResolve(e),this._didCreateEngineInitializerResolve=null,delete _flutter.loader.didCreateEngineInitializer),typeof this._onEntrypointLoaded=="function"&&this._onEntrypointLoaded(e)}_loadJSEntrypoint(e,r,t){let n=typeof r=="function";if(!this._scriptLoaded){this._scriptLoaded=!0;let s=this._createScriptTag(e,t);if(n)console.debug("Injecting <script> tag. Using callback."),this._onEntrypointLoaded=r,document.head.append(s);else return new Promise((a,o)=>{console.debug("Injecting <script> tag. Using Promises. Use the callback approach instead!"),this._didCreateEngineInitializerResolve=a,s.addEventListener("error",o),document.head.append(s)})}}async _loadWasmEntrypoint(e,r,t,n){if(!this._scriptLoaded){this._scriptLoaded=!0,this._onEntrypointLoaded=n;let{mainWasmPath:s,jsSupportRuntimePath:a}=e,o=c(t,s),d=c(t,a);this._ttPolicy!=null&&(d=this._ttPolicy.createScriptURL(d));let l=(await import(d)).compileStreaming(fetch(o)),p;e.renderer==="skwasm"?p=(async()=>{let v=await r.skwasm;return window._flutter_skwasmInstance=v,{skwasm:v.wasmExports,skwasmWrapper:v,ffi:{memory:v.wasmMemory}}})():p=Promise.resolve({}),await(await(await l).instantiate(await p,{loadDynamicModule:async(v,j)=>{let x=fetch(c(t,v)),S=c(t,j);this._ttPolicy!=null&&(S=this._ttPolicy.createScriptURL(S));let A=import(S);return[await x,await A]}})).invokeMain()}}_createScriptTag(e,r){let t=document.createElement("script");t.type="application/javascript",r&&(t.nonce=r);let n=e;return this._ttPolicy!=null&&(n=this._ttPolicy.createScriptURL(e)),t.src=n,t}};async function U(i,e,r){if(e<0)return i;let t,n=new Promise((s,a)=>{t=setTimeout(()=>{a(new Error(`${r} took more than ${e}ms to resolve. Moving on.`,{cause:U}))},e)});return Promise.race([i,n]).finally(()=>{clearTimeout(t)})}var g=class{setTrustedTypesPolicy(e){this._ttPolicy=e}loadServiceWorker(e){if(!e)return console.debug("Null serviceWorker configuration. Skipping."),Promise.resolve();if(!("serviceWorker"in navigator)){let o="Service Worker API unavailable.";return window.isSecureContext||(o+=`
+<script>
+
+    window.addEventListener(
+        "load",
+        function () {
+
+            (()=>{var _={blink:!0,gecko:!1,webkit:!1,unknown:!1},K=()=>navigator.vendor==="Google Inc."||navigator.userAgent.includes("Edg/")?"blink":navigator.vendor==="Apple Computer, Inc."?"webkit":navigator.vendor===""&&navigator.userAgent.includes("Firefox")?"gecko":"unknown",L=K(),R=()=>typeof ImageDecoder>"u"?!1:L==="blink",B=()=>typeof Intl.v8BreakIterator<"u"&&typeof Intl.Segmenter<"u",z=()=>{let i=[0,97,115,109,1,0,0,0,1,5,1,95,1,120,0];return WebAssembly.validate(new Uint8Array(i))},M=()=>{let i=document.createElement("canvas");return i.width=1,i.height=1,i.getContext("webgl2")!=null?2:i.getContext("webgl")!=null?1:-1},w={browserEngine:L,hasImageCodecs:R(),hasChromiumBreakIterators:B(),supportsWasmGC:z(),crossOriginIsolated:window.crossOriginIsolated,webGLVersion:M()};function c(...i){return new URL(I(...i),document.baseURI).toString()}function I(...i){return i.filter(e=>!!e).map((e,r)=>r===0?C(e):D(C(e))).filter(e=>e.length).join("/")}function D(i){let e=0;for(;e<i.length&&i.charAt(e)==="/";)e++;return i.substring(e)}function C(i){let e=i.length;for(;e>0&&i.charAt(e-1)==="/";)e--;return i.substring(0,e)}function T(i,e){return i.canvasKitBaseUrl?i.canvasKitBaseUrl:e.engineRevision&&!e.useLocalCanvasKit?I("https://www.gstatic.com/flutter-canvaskit",e.engineRevision):"canvaskit"}var h=class{constructor(){this._scriptLoaded=!1}setTrustedTypesPolicy(e){this._ttPolicy=e}async loadEntrypoint(e){let{entrypointUrl:r=c("main.dart.js"),onEntrypointLoaded:t,nonce:n}=e||{};return this._loadJSEntrypoint(r,t,n)}async load(e,r,t,n,s){s??=d=>{d.initializeEngine(t).then(u=>u.runApp())};let{entrypointBaseUrl:a}=t,{entryPointBaseUrl:o}=t;if(!a&&o&&(console.warn("[deprecated] `entryPointBaseUrl` is deprecated and will be removed in a future release. Use `entrypointBaseUrl` instead."),a=o),e.compileTarget==="dart2wasm")return this._loadWasmEntrypoint(e,r,a,s);{let d=e.mainJsPath??"main.dart.js",u=c(a,d);return this._loadJSEntrypoint(u,s,n)}}didCreateEngineInitializer(e){typeof this._didCreateEngineInitializerResolve=="function"&&(this._didCreateEngineInitializerResolve(e),this._didCreateEngineInitializerResolve=null,delete _flutter.loader.didCreateEngineInitializer),typeof this._onEntrypointLoaded=="function"&&this._onEntrypointLoaded(e)}_loadJSEntrypoint(e,r,t){let n=typeof r=="function";if(!this._scriptLoaded){this._scriptLoaded=!0;let s=this._createScriptTag(e,t);if(n)console.debug("Injecting <script> tag. Using callback."),this._onEntrypointLoaded=r,document.head.append(s);else return new Promise((a,o)=>{console.debug("Injecting <script> tag. Using Promises. Use the callback approach instead!"),this._didCreateEngineInitializerResolve=a,s.addEventListener("error",o),document.head.append(s)})}}async _loadWasmEntrypoint(e,r,t,n){if(!this._scriptLoaded){this._scriptLoaded=!0,this._onEntrypointLoaded=n;let{mainWasmPath:s,jsSupportRuntimePath:a}=e,o=c(t,s),d=c(t,a);this._ttPolicy!=null&&(d=this._ttPolicy.createScriptURL(d));let l=(await import(d)).compileStreaming(fetch(o)),p;e.renderer==="skwasm"?p=(async()=>{let v=await r.skwasm;return window._flutter_skwasmInstance=v,{skwasm:v.wasmExports,skwasmWrapper:v,ffi:{memory:v.wasmMemory}}})():p=Promise.resolve({}),await(await(await l).instantiate(await p,{loadDynamicModule:async(v,j)=>{let x=fetch(c(t,v)),S=c(t,j);this._ttPolicy!=null&&(S=this._ttPolicy.createScriptURL(S));let A=import(S);return[await x,await A]}})).invokeMain()}}_createScriptTag(e,r){let t=document.createElement("script");t.type="application/javascript",r&&(t.nonce=r);let n=e;return this._ttPolicy!=null&&(n=this._ttPolicy.createScriptURL(e)),t.src=n,t}};async function U(i,e,r){if(e<0)return i;let t,n=new Promise((s,a)=>{t=setTimeout(()=>{a(new Error(`${r} took more than ${e}ms to resolve. Moving on.`,{cause:U}))},e)});return Promise.race([i,n]).finally(()=>{clearTimeout(t)})}var g=class{setTrustedTypesPolicy(e){this._ttPolicy=e}loadServiceWorker(e){if(!e)return console.debug("Null serviceWorker configuration. Skipping."),Promise.resolve();if(!("serviceWorker"in navigator)){let o="Service Worker API unavailable.";return window.isSecureContext||(o+=`
 The current context is NOT secure.`,o+=`
 Read more: https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts`),Promise.reject(new Error(o))}let{serviceWorkerVersion:r,serviceWorkerUrl:t=c(`flutter_service_worker.js?v=${r}`),timeoutMillis:n=4e3}=e,s=t;this._ttPolicy!=null&&(s=this._ttPolicy.createScriptURL(s));let a=navigator.serviceWorker.register(s).then(o=>this._getNewServiceWorker(o,r)).then(this._waitForServiceWorkerActivation);return U(a,n,"prepareServiceWorker")}async _getNewServiceWorker(e,r){if(!e.active&&(e.installing||e.waiting))return console.debug("Installing/Activating first service worker."),e.installing||e.waiting;if(e.active.scriptURL.endsWith(r))return console.debug("Loading from existing service worker."),e.active;{let t=await e.update();return console.debug("Updating service worker."),t.installing||t.waiting||t.active}}async _waitForServiceWorkerActivation(e){if(!e||e.state==="activated")if(e){console.debug("Service worker already active.");return}else throw new Error("Cannot activate a null service worker!");return new Promise((r,t)=>{e.addEventListener("statechange",()=>{e.state==="activated"&&(console.debug("Activated new service worker."),r())})})}};var y=class{constructor(e,r="flutter-js"){let t=e||[/\.js$/,/\.mjs$/];window.trustedTypes&&(this.policy=trustedTypes.createPolicy(r,{createScriptURL:function(n){if(n.startsWith("blob:"))return n;let s=new URL(n,window.location),a=s.pathname.split("/").pop();if(t.some(d=>d.test(a)))return s.toString();console.error("URL rejected by TrustedTypes policy",r,":",n,"(download prevented)")}}))}};var k=i=>{let e=WebAssembly.compileStreaming(fetch(i));return(r,t)=>((async()=>{let n=await e,s=await WebAssembly.instantiate(n,r);t(s,n)})(),{})};var E=(i,e,r,t)=>(window.flutterCanvasKitLoaded=(async()=>{if(window.flutterCanvasKit)return window.flutterCanvasKit;let n=r.hasChromiumBreakIterators&&r.hasImageCodecs;if(!n&&e.canvasKitVariant=="chromium")throw"Chromium CanvasKit variant specifically requested, but unsupported in this browser";let s=n&&e.canvasKitVariant!=="full",a=t;e.canvasKitVariant=="experimentalWebParagraph"?a=c(a,"experimental_webparagraph"):s&&(a=c(a,"chromium"));let o=c(a,"canvaskit.js");i.flutterTT.policy&&(o=i.flutterTT.policy.createScriptURL(o));let d=k(c(a,"canvaskit.wasm")),u=await import(o);return window.flutterCanvasKit=await u.default({instantiateWasm:d}),window.flutterCanvasKit})(),window.flutterCanvasKitLoaded);var W=async(i,e,r,t)=>{let s=!r.hasImageCodecs||!r.hasChromiumBreakIterators?"skwasm_heavy":"skwasm",a=c(t,`${s}.js`),o=a;i.flutterTT.policy&&(o=i.flutterTT.policy.createScriptURL(o));let d=k(c(t,`${s}.wasm`));return await(await import(o)).default({skwasmSingleThreaded:!r.crossOriginIsolated||e.forceSingleThreadedSkwasm,instantiateWasm:d,locateFile:(l,p)=>{if(l.endsWith(".ww.js")){let f=c(t,l);return URL.createObjectURL(new Blob([`
 "use strict";
@@ -426,74 +585,76 @@ addEventListener("message", eventListener);
 //# sourceMappingURL=flutter.js.map
 
 
-    if (!window._flutter) {
+            if (!window._flutter) {
   window._flutter = {};
 }
 _flutter.buildConfig = {"engineRevision":"a5cb96369ef86c7e85abf5d662a1ca5d89775053","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"},{}]};
 
 
-    _flutter.loader.load({
+            _flutter.loader.load({
 
-      serviceWorker: {
-        serviceWorkerVersion:
-          "1221465012",
-      },
+                serviceWorker: {
 
-      onEntrypointLoaded: function (engineInitializer) {
+                    serviceWorkerVersion:
+                        "2145140947",
 
-        engineInitializer.initializeEngine().then(function (appRunner) {
+                },
 
-          if (document.getElementById('splash')) {
-            document.getElementById('splash').remove();
-          }
+                onEntrypointLoaded:
+                    function (
+                        engineInitializer
+                    ) {
 
-          appRunner.runApp();
+                        engineInitializer
+                            .initializeEngine()
+                            .then(
+                                function (appRunner) {
 
-        });
+                                    var splash =
+                                        document.getElementById(
+                                            "splash"
+                                        );
 
-      }
+                                    if (splash) {
 
-    });
+                                        splash.remove();
 
-  });
-</script>
+                                    }
 
-<!-- Theme Detection -->
-<script>
-  if (typeof Storage !== "undefined") {
+                                    var preloader =
+                                        document.querySelector(
+                                            ".preloader"
+                                        );
 
-    var itemValue =
-      localStorage.getItem("flutter.demand_theme");
+                                    if (preloader) {
 
-    console.log("flutter.theme", itemValue);
+                                        preloader.remove();
 
-    if (itemValue !== null) {
+                                    }
 
-      if (itemValue === "true") {
+                                    var header =
+                                        document.querySelector(
+                                            ".header"
+                                        );
 
-        document.body.classList.add("theme-dark");
+                                    if (header) {
 
-      } else {
+                                        header.remove();
 
-        document.body.classList.remove("theme-light");
+                                    }
 
-      }
+                                    appRunner.runApp();
 
-    } else {
+                                }
+                            );
 
-      console.log(
-        "Theme item not found in localStorage"
-      );
+                    }
 
-    }
+            });
 
-  } else {
-
-    console.log(
-      "localStorage is not supported in this browser"
+        }
     );
 
-  }
 </script>
 
 </body>
