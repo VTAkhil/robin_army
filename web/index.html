@@ -3,7 +3,12 @@
 
 <head>
 
-    <base href="/my-app/">
+    <!-- ⚠️ IMPORTANT: Change this to match your deployment URL.
+         - If hosted at https://vtakhil.github.io/          → use "/"
+         - If hosted at https://vtakhil.github.io/demandium/ → use "/demandium/"
+         - If hosted at https://yourdomain.com/my-app/       → use "/my-app/"
+    -->
+    <base href="/">
 
     <!-- ========================================================= -->
     <!-- BASIC META -->
@@ -46,6 +51,11 @@
 
     <meta
             name="apple-mobile-web-app-capable"
+            content="yes"
+    >
+
+    <meta
+            name="mobile-web-app-capable"
             content="yes"
     >
 
@@ -101,11 +111,12 @@
 
     <!-- ========================================================= -->
     <!-- FLUTTER INAPPWEBVIEW -->
+    <!-- NOTE: leading "/" removed so it respects <base href> -->
     <!-- ========================================================= -->
 
     <script
             type="application/javascript"
-            src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
+            src="assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
             defer
     ></script>
 
@@ -596,7 +607,7 @@ _flutter.buildConfig = {"engineRevision":"a5cb96369ef86c7e85abf5d662a1ca5d897750
                 serviceWorker: {
 
                     serviceWorkerVersion:
-                        "3307095362",
+                        "4112847379",
 
                 },
 
